@@ -97,7 +97,7 @@ approval/request（瀑布）
 
 ## 安装
 
-> **复制给 AI 的一句话**——把这一句话交给任意 AI 编程 agent，让它帮你完成安装："请阅读本 README 的『## 安装』章节，并严格按其步骤把 `dsh-approval-llm` bundle 安装进 DeepSeek Harness 的 web profile——执行 `dsh plugin --profile web add dsh-approval-llm`——然后重启 `dsh web` 服务，并确认权限选择器里出现带盾牌+星芒图标的 `model-approval`（帮我批准）预设。"
+> **复制给 AI 的一句话**——把这一句话交给任意 AI 编程 agent，让它帮你完成安装："请阅读 https://github.com/Letter2025/dsh-approval-llm/blob/main/README.md 并遵循其『## 安装』章节，把 `dsh-approval-llm` bundle 安装进 DeepSeek Harness 的 web profile，然后重启 `dsh web` 服务，并确认权限选择器里出现带盾牌+星芒图标的 `model-approval`（帮我批准）预设。"
 
 ### 作为可安装 bundle（推荐）
 

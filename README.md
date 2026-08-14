@@ -97,7 +97,7 @@ Example overlay (`cordis.patch.yml` of your profile):
 
 ## Install
 
-> **Copy-paste for an AI agent** — hand this one sentence to any AI coding agent to have it install the plugin for you: "Read the `## Install` section of this README and install the `dsh-approval-llm` bundle into the DeepSeek Harness web profile exactly as written — run `dsh plugin --profile web add dsh-approval-llm` — restart the `dsh web` server, and verify that the permission selector shows the `model-approval` (帮我批准) preset with its shield-sparkle icon."
+> **Copy-paste for an AI agent** — hand this one sentence to any AI coding agent to have it install the plugin for you: "Read https://github.com/Letter2025/dsh-approval-llm/blob/main/README.md and follow its `## Install` section to install the `dsh-approval-llm` bundle into the DeepSeek Harness web profile, restart the `dsh web` server, and verify that the permission selector shows the `model-approval` (帮我批准) preset with its shield-sparkle icon."
 
 ### As an installable bundle (recommended)
 
