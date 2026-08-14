@@ -97,19 +97,19 @@ approval/request（瀑布）
 
 ## 安装
 
-> **复制给 AI 的一句话**——把这一句话交给任意 AI 编程 agent，让它帮你完成安装："请阅读本 README 的『## 安装』章节，并严格按其步骤把 `dsh-approval-llm` bundle 安装进 DeepSeek Harness 的 web profile——执行 `dsh plugin add dsh-approval-llm`——然后重启 `dsh web` 服务，并确认权限选择器里出现带盾牌+星芒图标的 `model-approval`（帮我批准）预设。"
+> **复制给 AI 的一句话**——把这一句话交给任意 AI 编程 agent，让它帮你完成安装："请阅读本 README 的『## 安装』章节，并严格按其步骤把 `dsh-approval-llm` bundle 安装进 DeepSeek Harness 的 web profile——执行 `dsh plugin --profile web add dsh-approval-llm`——然后重启 `dsh web` 服务，并确认权限选择器里出现带盾牌+星芒图标的 `model-approval`（帮我批准）预设。"
 
 ### 作为可安装 bundle（推荐）
 
 本包在 `package.json` 中声明了 `dsh.bundle.patch`，安装后会激活一个配置层：既插入插件行，也往 `permission` 权限表添加 `model-approval`（"帮我批准"）预设——无需再手动配置预设：
 
 ```sh
-dsh plugin add dsh-approval-llm   # 从 npm 安装已发布的包
+dsh plugin --profile web add dsh-approval-llm   # 从 npm 安装已发布的包
 ```
 
 重启 `dsh web`，然后在权限选择器（输入栏的 Access chip，带盾牌+星芒图标）里选 **帮我批准**，即可把该会话的审批人切换为模型。预设表是进程级的，修改预设需要重启 dsh。
 
-In-box bundle 的行名从 dsh 安装本身解析；`@deepseek-ai/*` 导入是 `peerDependencies`，由宿主 dsh 提供，所以请锁定 dsh 版本（项目处于开发者预览，有破坏性变更）。想从本地检出安装：先 `pnpm run build`，再在父目录执行 `dsh plugin add ./dsh-approval-llm`。
+In-box bundle 的行名从 dsh 安装本身解析；`@deepseek-ai/*` 导入是 `peerDependencies`，由宿主 dsh 提供，所以请锁定 dsh 版本（项目处于开发者预览，有破坏性变更）。想从本地检出安装：先 `pnpm run build`，再在父目录执行 `dsh plugin --profile web add ./dsh-approval-llm`。
 
 ### 源码覆盖层（开发用）
 
