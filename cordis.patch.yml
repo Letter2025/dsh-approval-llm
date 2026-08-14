@@ -1,0 +1,55 @@
+# dsh-approval-llm bundle patch: one insert plus one preset-table update over
+# the profile root.
+#
+# 1. Inserts the plugin row. The plugin answers `approval/request` asks with a
+#    separate reviewer model, but ONLY in the permission preset named by
+#    `modePreset` (default `model-approval`); outside that preset every request
+#    delegates to the human channel.
+# 2. Updates the `permission` row (from dsh-base) with the dedicated
+#    `model-approval` preset ("帮我批准"), so installing this bundle alone is
+#    enough — no manual preset config needed. A later patch layer (the user's
+#    profile cordis.patch.yml) may still restate the whole row.
+#
+# Leave `provider`/`model` unset to reuse the conversation route recorded in
+# the session log; set them to pin a dedicated reviewer. A patch replaces the
+# whole row config, so overrides must restate every kept field.
+
+- insert:
+    - id: approval-llm
+      name: 'dsh-approval-llm'
+      config:
+        enabled: true
+        modePreset: model-approval
+        timeoutMs: 60000
+        maxOutputTokens: 256
+        allowlist: []
+        denyList: []
+        humanOnlyList: []
+        maxConsecutiveDenials: 3
+        maxArgsChars: 4000
+        includeArgs: true
+        notifyUser: true
+
+- id: permission
+  config:
+    presets:
+      read-only:
+        sandbox: read-only
+        approval: ask
+        name: 只读
+        description: 只能读，任何写入都需要审批。
+      workspace-write:
+        sandbox: workspace-write
+        approval: ask
+        name: 请求批准
+        description: 工作区内可写；工作区外的操作请求人工审批。
+      model-approval:
+        sandbox: workspace-write
+        approval: ask
+        name: 帮我批准
+        description: 审批由独立的评审模型决定；拿不准或模型故障时转人工。
+      danger-full-access:
+        sandbox: danger-full-access
+        approval: never
+        name: 完全放开
+        description: 全放行，不弹审批。

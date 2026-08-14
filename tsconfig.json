@@ -1,0 +1,33 @@
+{
+  // Typecheck + vitest resolution facade for the plugin.
+  // Resolves @deepseek-ai/* to the BUILT declaration files of the DeepSeek
+  // Harness checkout this plugin lives inside (artifact plane), so the harness
+  // must be built at the repo root (node_modules/.pnpm links +
+  // node_modules/@types). Build with `pnpm run build` for publishing.
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": false,
+    "strict": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "types": ["node"],
+    "typeRoots": ["../../node_modules/@types"],
+    "paths": {
+      "@deepseek-ai/dsh-*": ["../../node_modules/.pnpm/node_modules/@deepseek-ai/dsh-*"],
+      "@deepseek-ai/cordis": ["../../node_modules/.pnpm/node_modules/@deepseek-ai/cordis"],
+      "@deepseek-ai/schemastery": ["../../node_modules/.pnpm/node_modules/@deepseek-ai/schemastery"]
+    }
+  },
+  "include": ["src", "tests"]
+}
