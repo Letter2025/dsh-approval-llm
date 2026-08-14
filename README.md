@@ -1,5 +1,7 @@
 # dsh-approval-llm
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
 English | [中文](README.zh.md)
 
 **Model-based permission approval (approve-for-me) for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**

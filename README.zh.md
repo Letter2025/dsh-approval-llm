@@ -1,5 +1,7 @@
 # dsh-approval-llm
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
 **面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的模型审批插件（approve-for-me）。**
 
 [English](README.md) | 中文
