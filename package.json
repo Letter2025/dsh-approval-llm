@@ -5,7 +5,7 @@
   "author": "Letter2025",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Letter2025/dsh-approval-llm.git"
+    "url": "git+https://github.com/Letter2025/dsh-approval-llm.git"
   },
   "bugs": {
     "url": "https://github.com/Letter2025/dsh-approval-llm/issues"
