@@ -113,6 +113,10 @@ Restart `dsh web`, then pick **帮我批准** in the permission selector (the Ac
 
 In-box bundle rows resolve from the dsh installation itself; the `@deepseek-ai/*` imports are `peerDependencies` provided by the host dsh, so pin your dsh version (the project is in developer preview with breaking changes). Installing from a local checkout instead: `pnpm run build`, then `dsh plugin --profile web add ./dsh-approval-llm` from the parent directory.
 
+### Bundled skill: configure the reviewer
+
+The package ships one bundled skill (`configure-approval-llm`, source `bundled`), so installing the plugin also puts a configuration guide in the skill catalog. Ask any agent to "configure the approval reviewer", or load the skill directly — it walks an **AI-proposes / user-confirms** flow: probe the current model and provider settings, write the `approval-llm` overlay into `~/.dsh/profiles/web/cordis.patch.yml`, then present the full config for your confirmation before a restart takes effect. The guide covers choosing a reviewer model (same provider preferred, `contextWindow` ≥ the main model), and tightening `allowlist` / `denyList` / `humanOnlyList` / `maxConsecutiveDenials` for your deployment.
+
 ### As a source overlay (dev)
 
 ```yaml

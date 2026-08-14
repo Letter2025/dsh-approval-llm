@@ -113,6 +113,10 @@ dsh plugin --profile web add dsh-approval-llm   # 从 npm 安装已发布的包
 
 In-box bundle 的行名从 dsh 安装本身解析；`@deepseek-ai/*` 导入是 `peerDependencies`，由宿主 dsh 提供，所以请锁定 dsh 版本（项目处于开发者预览，有破坏性变更）。想从本地检出安装：先 `pnpm run build`，再在父目录执行 `dsh plugin --profile web add ./dsh-approval-llm`。
 
+### 随包技能：引导配置评审模型
+
+本包随附一个 bundled 技能（`configure-approval-llm`，source `bundled`），安装插件后技能自动进入目录。让任意 agent「配置审批评审模型」，或直接加载该技能——它遵循 **AI 先配置、用户确认** 的流程：先探测当前模型与 provider 设置，把 `approval-llm` 覆盖行写入 `~/.dsh/profiles/web/cordis.patch.yml`，再贴出完整配置等你确认后才重启生效。指南覆盖评审模型选型（同 provider 优先、`contextWindow ≥ 主模型`），以及按部署收紧 `allowlist` / `denyList` / `humanOnlyList` / `maxConsecutiveDenials`。
+
 ### 源码覆盖层（开发用）
 
 ```yaml

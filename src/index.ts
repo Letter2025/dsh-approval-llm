@@ -23,6 +23,7 @@ import type { ApprovalOutcome, ApprovalRequest } from '@deepseek-ai/dsh-user-app
 import { routeTool } from './routing.ts'
 import { buildReviewInput } from './context.ts'
 import { reviewRequest } from './reviewer.ts'
+import { registerSkillProvider } from './skill.ts'
 import type { ApprovalLlmConfig, ReviewerResult } from './types.ts'
 
 // The plugin injects the permission-presets service; declare its ctx key (the
@@ -35,7 +36,7 @@ declare module '@deepseek-ai/cordis' {
 }
 
 export const name = 'dsh-approval-llm'
-export const inject = ['llm', 'tools', 'permissionPresets']
+export const inject = ['llm', 'tools', 'permissionPresets', 'skills']
 
 export const Config: z<ApprovalLlmConfig> = z.object({
   enabled: z.boolean().default(true),
@@ -104,11 +105,12 @@ function notifyDecision(
 }
 
 /**
- * Register the approval answerer.
- * @param ctx - context exposing the LLM, tool-registry, and permission-preset services.
+ * Register the approval answerer and the bundled reviewer-configuration skill.
+ * @param ctx - context exposing the LLM, tool-registry, permission-preset, and skills services.
  * @param rawConfig - untrusted plugin configuration, validated by the schema.
  */
 export function apply(ctx: Context, rawConfig: ApprovalLlmConfig): void {
+  registerSkillProvider(ctx)
   const config = resolveConfig(rawConfig)
   const mode = reviewerMode(config)
   const denials = new Map<string, number>()

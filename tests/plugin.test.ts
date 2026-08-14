@@ -43,6 +43,7 @@ function harness(cfg: ApprovalLlmConfig, streamText?: string): FakeHarness {
     logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
     llm: { stream },
     tools: { schemas: () => [] },
+    skills: { registerProvider: vi.fn() },
     permissionPresets: { current: vi.fn(() => activePreset) },
   } as unknown as Context
   apply(ctx, cfg)
