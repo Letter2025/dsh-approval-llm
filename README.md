@@ -97,20 +97,19 @@ Example overlay (`cordis.patch.yml` of your profile):
 
 ## Install
 
-> **Copy-paste for an AI agent** — hand this one sentence to any AI coding agent to have it install the plugin for you: "Read the `## Install` section of this README and install the `dsh-approval-llm` bundle into the DeepSeek Harness web profile exactly as written — run `pnpm run build`, then `dsh plugin add ./dsh-approval-llm` from the parent directory — restart the `dsh web` server, and verify that the permission selector shows the `model-approval` (帮我批准) preset with its shield-sparkle icon."
+> **Copy-paste for an AI agent** — hand this one sentence to any AI coding agent to have it install the plugin for you: "Read the `## Install` section of this README and install the `dsh-approval-llm` bundle into the DeepSeek Harness web profile exactly as written — run `dsh plugin add dsh-approval-llm` — restart the `dsh web` server, and verify that the permission selector shows the `model-approval` (帮我批准) preset with its shield-sparkle icon."
 
 ### As an installable bundle (recommended)
 
 This package declares `dsh.bundle.patch` in its `package.json`, so installing it activates a configuration layer that inserts the plugin row **and** adds the `model-approval` ("帮我批准") preset to the `permission` table — no manual preset config needed:
 
 ```sh
-pnpm run build                      # emits lib/
-dsh plugin add ./dsh-approval-llm   # from the parent directory; or publish to npm first
+dsh plugin add dsh-approval-llm   # installs the published npm package
 ```
 
 Restart `dsh web`, then pick **帮我批准** in the permission selector (the Access chip in the input bar, which carries a shield-sparkle glyph) to switch that session's reviewer to the model. The preset table is process-level, so changing presets requires a dsh restart.
 
-In-box bundle rows resolve from the dsh installation itself; the `@deepseek-ai/*` imports are `peerDependencies` provided by the host dsh, so pin your dsh version (the project is in developer preview with breaking changes).
+In-box bundle rows resolve from the dsh installation itself; the `@deepseek-ai/*` imports are `peerDependencies` provided by the host dsh, so pin your dsh version (the project is in developer preview with breaking changes). Installing from a local checkout instead: `pnpm run build`, then `dsh plugin add ./dsh-approval-llm` from the parent directory.
 
 ### As a source overlay (dev)
 
