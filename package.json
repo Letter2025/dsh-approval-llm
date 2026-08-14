@@ -1,6 +1,6 @@
 {
   "name": "dsh-approval-llm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Model-based permission approval (approve-for-me) for DeepSeek Harness: an approval/request answerer backed by a separate reviewer model",
   "author": "Letter2025",
   "repository": {
