@@ -4,8 +4,10 @@
 [![downloads](https://img.shields.io/npm/dt/dsh-approval-llm?style=flat&label=downloads&color=blue)](https://www.npmjs.com/package/dsh-approval-llm)
 [![stars](https://img.shields.io/github/stars/Letter2025/dsh-approval-llm?style=flat&label=stars&color=blue)](https://github.com/Letter2025/dsh-approval-llm)
 [![license](https://img.shields.io/github/license/Letter2025/dsh-approval-llm?style=flat&label=license&color=blue)](LICENSE)
-[![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-0075cc?style=flat&labelColor=555555)](https://github.com/Letter2025/dsh-approval-llm)
+[![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-0075cc?style=flat&labelColor=555555)](https://github.com/Letter2025/dsh-approval-llm/blob/main/README.md)
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
+[English](https://github.com/Letter2025/dsh-approval-llm/blob/main/README.md) | 中文
 
 **面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的模型审批插件（approve-for-me）。**
 
