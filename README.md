@@ -7,8 +7,6 @@
 [![docs](https://img.shields.io/badge/docs-English%20%7C%20%E4%B8%AD%E6%96%87-0075cc?style=flat&labelColor=555555)](https://github.com/Letter2025/dsh-approval-llm/blob/main/README.zh.md)
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-English | [中文](https://github.com/Letter2025/dsh-approval-llm/blob/main/README.zh.md)
-
 **Model-based permission approval (approve-for-me) for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
 
 A community plugin that adds a **"model approval" permission mode** (approve-for-me) to DeepSeek Harness: in that mode, `approval/request` asks are answered by a **separate reviewer model** instead of a human — the reviewer decides `ALLOW / DENY / ESCALATE`, and the request only reaches a human when the reviewer cannot decide or fails. In every other permission mode the plugin stays silent, so human approval is never front-run by the model.
