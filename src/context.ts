@@ -10,7 +10,7 @@
 
 import type { Context } from '@deepseek-ai/cordis'
 import type { Session } from '@deepseek-ai/dsh-session'
-import type { CallId } from '@deepseek-ai/dsh-llm'
+import type { ToolCallId } from '@deepseek-ai/dsh-llm'
 import type { ToolRuntime } from '@deepseek-ai/dsh-tools'
 import type { ApprovalLlmConfig, ReviewInput } from './types.ts'
 
@@ -38,10 +38,12 @@ export interface ModelRoute {
  */
 export function findToolCallArguments(
   session: Session,
-  callId: CallId,
+  callId: ToolCallId,
   maxArgsChars: number,
 ): string | undefined {
-  const events = session.events
+  // dsh-session 0.1.2 dropped the bare `session.events` array; read the log
+  // through the public frozen snapshot instead.
+  const events = session.snapshotEvents()
   for (let i = events.length - 1; i >= 0; i--) {
     const event = events[i]
     if (event?.type !== 'tool/call' || event.data.callId !== callId) continue
@@ -64,7 +66,7 @@ export function findToolDescription(ctx: Context, toolName: string): string | un
  * @returns the last logged route, or undefined when the log has none.
  */
 export function conversationRoute(session: Session): ModelRoute | undefined {
-  const events = session.events
+  const events = session.snapshotEvents()
   for (let i = events.length - 1; i >= 0; i--) {
     const event = events[i]
     if (event?.type !== 'request/header') continue
@@ -93,7 +95,7 @@ export function conversationRoute(session: Session): ModelRoute | undefined {
 export function buildReviewInput(
   ctx: Context,
   session: Session,
-  callId: CallId | undefined,
+  callId: ToolCallId | undefined,
   toolName: string,
   reason: string | undefined,
   config: ApprovalLlmConfig,

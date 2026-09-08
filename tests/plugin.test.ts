@@ -57,9 +57,11 @@ function harness(cfg: ApprovalLlmConfig, streamText?: string): FakeHarness {
 }
 
 function request(toolName: string, overrides: { reason?: string; sessionId?: string } = {}) {
+  const events: unknown[] = []
   const session = {
     id: SessionId(overrides.sessionId ?? 's1'),
-    events: [],
+    events,
+    snapshotEvents: () => events,
     append: vi.fn(),
   }
   const req = {

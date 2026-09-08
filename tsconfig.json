@@ -1,9 +1,9 @@
 {
   // Typecheck + vitest resolution facade for the plugin.
-  // Resolves @deepseek-ai/* to the BUILT declaration files of the DeepSeek
-  // Harness checkout this plugin lives inside (artifact plane), so the harness
-  // must be built at the repo root (node_modules/.pnpm links +
-  // node_modules/@types). Build with `pnpm run build` for publishing.
+  // Resolves @deepseek-ai/* from this package's own node_modules, where the
+  // devDependencies pin the published 0.1.2-rc.1 type artifacts — the same
+  // packages the dsh 0.1.2-rc.1 host provides at runtime. Run `npm install`
+  // once after changing devDependencies, then build with `npm run build`.
   "compilerOptions": {
     "target": "es2024",
     "module": "esnext",
@@ -22,12 +22,7 @@
     "noUnusedParameters": true,
     "noEmit": true,
     "types": ["node"],
-    "typeRoots": ["../../node_modules/@types"],
-    "paths": {
-      "@deepseek-ai/dsh-*": ["../../node_modules/.pnpm/node_modules/@deepseek-ai/dsh-*"],
-      "@deepseek-ai/cordis": ["../../node_modules/.pnpm/node_modules/@deepseek-ai/cordis"],
-      "@deepseek-ai/schemastery": ["../../node_modules/.pnpm/node_modules/@deepseek-ai/schemastery"]
-    }
+    "typeRoots": ["../../node_modules/@types"]
   },
   "include": ["src", "tests"]
 }

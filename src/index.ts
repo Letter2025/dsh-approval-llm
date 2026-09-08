@@ -124,7 +124,9 @@ export function apply(ctx: Context, rawConfig: ApprovalLlmConfig): void {
     const session = req.agent.session
     // Mode gate: outside the dedicated preset the reviewer does not exist —
     // every request, allowlist included, delegates to the human channel.
-    if (mode !== undefined && ctx.permissionPresets.current(session.events) !== mode) {
+    // dsh-permission-presets 0.1.2 resolves the preset from the SESSION
+    // (its knob fold), not from the raw events array.
+    if (mode !== undefined && ctx.permissionPresets.current(session) !== mode) {
       return next()
     }
 

@@ -38,7 +38,9 @@ function fakeContext(stream: AsyncIterable<StreamChunk>): Context {
 }
 
 function fakeSession(events: unknown[] = []) {
-  return { id: SessionId('review-session'), events } as never
+  // dsh-session 0.1.2 reads the log through snapshotEvents(); the fake
+  // mirrors that shape (the `events` alias keeps the tests readable).
+  return { id: SessionId('review-session'), events, snapshotEvents: () => events } as never
 }
 
 const input: ReviewInput = { toolName: 'pwsh', reason: 'run tests' }

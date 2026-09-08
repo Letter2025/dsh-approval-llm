@@ -8,7 +8,7 @@
  */
 
 import type { Context } from '@deepseek-ai/cordis'
-import { BlockAssembler, createUserMessage, deepFreeze } from '@deepseek-ai/dsh-llm'
+import { BlockAssembler, createUserMessage } from '@deepseek-ai/dsh-llm'
 import type { FinishReason, GenerateOptions, Message } from '@deepseek-ai/dsh-llm'
 import { deadline, timeoutOf } from '@deepseek-ai/dsh-timeout'
 import type { Session } from '@deepseek-ai/dsh-session'
@@ -180,7 +180,10 @@ export async function reviewRequest(
       content: [{ type: 'text', text: framed }],
       source: { kind: 'plugin', plugin: 'dsh-approval-llm' },
     })]
-    const options: GenerateOptions = deepFreeze({
+    // dsh-llm 0.1.2 no longer exports `deepFreeze` from its main entry (it
+    // lived in dsh-util-values); `Object.freeze` keeps the same single-shot
+    // immutability guarantee for this call.
+    const options: GenerateOptions = Object.freeze({
       provider: route.provider,
       model: route.model,
       messages,
