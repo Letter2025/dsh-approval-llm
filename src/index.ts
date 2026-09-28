@@ -94,7 +94,9 @@ function notifyDecision(
   try {
     session.append('user/message', createUserMessage({
       content: [{ type: 'text', text }],
-      source: { kind: 'plugin', plugin: 'dsh-approval-llm' },
+      // dsh-llm 0.1.7 dropped the generic 'plugin' message producer; this
+      // notice is owned by the approval domain, so it claims 'user-approval'.
+      source: { kind: 'user-approval' },
     }), { surfaceOp: 'append' })
   } catch (error) {
     ctx.logger.error(

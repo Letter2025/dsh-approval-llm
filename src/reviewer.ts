@@ -178,7 +178,9 @@ export async function reviewRequest(
     const framed = frameReviewInput(input)
     const messages: Message[] = [createUserMessage({
       content: [{ type: 'text', text: framed }],
-      source: { kind: 'plugin', plugin: 'dsh-approval-llm' },
+      // rc.2 producer vocabulary: the reviewer prompt belongs to the
+      // approval domain, so its source claims 'user-approval'.
+      source: { kind: 'user-approval' },
     })]
     // dsh-llm 0.1.2 no longer exports `deepFreeze` from its main entry (it
     // lived in dsh-util-values); `Object.freeze` keeps the same single-shot

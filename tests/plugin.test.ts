@@ -211,7 +211,7 @@ describe('dsh-approval-llm answerer', () => {
       'user/message',
       expect.objectContaining({
         content: [{ type: 'text', text: '✅ 模型审批通过 "pwsh"（风险 LOW）— safe' }],
-        source: { kind: 'plugin', plugin: 'dsh-approval-llm' },
+        source: { kind: 'user-approval' },
       }),
       { surfaceOp: 'append' },
     )
